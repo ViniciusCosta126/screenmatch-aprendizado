@@ -1,4 +1,6 @@
 import br.com.vinicius.screenmatch.modelos.Filme;
+import br.com.vinicius.screenmatch.modelos.Serie;
+import calculos.CalculadoraDeTempo;
 
 public class Principal {
     public static void main(String[] args) {
@@ -14,5 +16,19 @@ public class Principal {
         meuFilme.avalia(5);
         System.out.println(meuFilme.getTotalDeAvaliacoes());
         System.out.println(meuFilme.pegaMedia());
+
+        Serie lost = new Serie();
+        lost.setNome("Lost");
+        lost.setAnoDeLancamento(2000);
+        lost.setTemporadas(10);
+        lost.setEpisodiosPorTemporada(10);
+        lost.setMinutosPorEpisodio(50);
+        System.out.println("Duração para maratonar lost:" + lost.getDuracaoEmMinutos());
+
+
+        CalculadoraDeTempo calculadoraDeTempo = new CalculadoraDeTempo();
+        calculadoraDeTempo.incluiTitulo(meuFilme);
+        calculadoraDeTempo.incluiTitulo(lost);
+        System.out.println(calculadoraDeTempo.getTempoTotal());
     }
 }
