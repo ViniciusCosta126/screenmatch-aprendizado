@@ -1,6 +1,5 @@
-package calculos;
+package br.com.vinicius.screenmatch.calculos;
 
-import br.com.vinicius.screenmatch.modelos.Filme;
 import br.com.vinicius.screenmatch.modelos.Titulo;
 
 public class CalculadoraDeTempo {

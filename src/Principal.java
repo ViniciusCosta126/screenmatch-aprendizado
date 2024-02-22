@@ -1,6 +1,8 @@
+import br.com.vinicius.screenmatch.calculos.FiltroRecomendacao;
+import br.com.vinicius.screenmatch.modelos.Episodio;
 import br.com.vinicius.screenmatch.modelos.Filme;
 import br.com.vinicius.screenmatch.modelos.Serie;
-import calculos.CalculadoraDeTempo;
+import br.com.vinicius.screenmatch.calculos.CalculadoraDeTempo;
 
 public class Principal {
     public static void main(String[] args) {
@@ -30,5 +32,16 @@ public class Principal {
         calculadoraDeTempo.incluiTitulo(meuFilme);
         calculadoraDeTempo.incluiTitulo(lost);
         System.out.println(calculadoraDeTempo.getTempoTotal());
+
+        FiltroRecomendacao filtroRecomendacao = new FiltroRecomendacao();
+
+        filtroRecomendacao.filtra(meuFilme);
+
+        Episodio episodio = new Episodio();
+        episodio.setNumero(1);
+        episodio.setSerie(lost);
+        episodio.setTotalDeVisualicoes(300);
+
+        filtroRecomendacao.filtra(episodio);
     }
 }
