@@ -1,12 +1,30 @@
 package br.com.vinicius.screenmatch.modelos;
 
-public class Titulo {
+import br.com.vinicius.screenmatch.excecao.ErroDeConversaoDeAnoException;
+
+public class Titulo implements Comparable<Titulo>{
     private String nome;
     private int anoDeLancamento;
     private boolean incluidoNoPlano;
     private double somaDasAvaliacoes;
     private int totalDeAvaliacoes;
     private int duracaoEmMinutos;
+
+    public Titulo(String nome, int anoDeLancamento) {
+        this.nome = nome;
+        this.anoDeLancamento = anoDeLancamento;
+    }
+
+    public Titulo(TituloOmdb novoTituloOmdb) {
+        this.nome = novoTituloOmdb.title();
+        if(novoTituloOmdb.year().length() > 4){
+            throw new ErroDeConversaoDeAnoException("Nao consegui converter o ano por ter mais de 04 caracteres");
+        } else{
+            this.anoDeLancamento = Integer.valueOf(novoTituloOmdb.year());
+        }
+
+        this.duracaoEmMinutos = Integer.valueOf(novoTituloOmdb.runtime().substring(0,2));
+    }
 
     public int getTotalDeAvaliacoes() {
         return totalDeAvaliacoes;
@@ -58,5 +76,15 @@ public class Titulo {
 
     public double pegaMedia() {
         return somaDasAvaliacoes / totalDeAvaliacoes;
+    }
+
+    @Override
+    public int compareTo(Titulo outroTitulo) {
+        return  this.getNome().compareTo(outroTitulo.getNome());
+    }
+
+    @Override
+    public String toString() {
+        return "(Titulo: " + nome + ", ano de lançamento: " + anoDeLancamento + ", Duração: " + duracaoEmMinutos + ")";
     }
 }
